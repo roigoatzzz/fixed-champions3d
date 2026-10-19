@@ -1,0 +1,53 @@
+THE CHAMPIONS 3D - HTML5 Version (Ruffle)
+=========================================
+
+A browser-playable version of the Flash game "The Champions 3D,"
+adapted to run using the Ruffle emulator. No Flash plugin required.
+
+RUNNING THE GAME LOCALLY
+------------------------
+The game will not work if you simply double-click "index.html" (due to
+browser security restrictions). You need a small local server. Python
+must be installed (from python.org; on Windows, be sure to check
+"Add Python to PATH" during installation). 
+
+Windows      : Double-click "start.bat"
+Mac / Linux  : Run "start.sh" (or type "sh start.sh" in a terminal)
+
+Your browser will open at http://localhost:8000
+Keep the black console window open while playing. Close it to exit.
+
+Manual method (if the scripts do not work):
+1. Open a terminal in this folder
+(On Windows, type "cmd" into the File Explorer address bar)
+2. Type: python -m http.server 8000
+(Alternatively: "py -m http.server 8000" or "python3 -m http.server 8000")
+3. Go to http://localhost:8000
+
+WITHOUT PYTHON
+--------------
+Install Ruffle Desktop (https://ruffle.rs) and open "thechampions3d.swf."
+
+TIPS FOR SMOOTH PERFORMANCE
+---------------------------
+The 3D pitch is reconstructed in 2D, which is resource-intensive.
+- Buttons below the game: Size "Small" = fastest performance.
+- Quality: "Fast" (default) = smoother; "Sharp" = better visuals but slower.
+- Use a modern browser (Chrome, Edge, Firefox) with
+hardware acceleration enabled. - If the keys stop responding, click once inside the game area.
+- Sound will begin after an initial click on the page.
+
+DEPLOYMENT
+----------
+This folder is a static site; upload it as-is to Netlify,
+GitHub Pages, Cloudflare Pages, etc. (with index.html at the root).
+
+CONTENTS
+--------
+index.html          page that loads the game
+thechampions3d.swf  the game (patched for Ruffle)
+ruffle/             the Ruffle emulator (MIT/Apache-2.0 licenses included)
+start.bat / start.sh  launch scripts
+
+The game belongs to its original authors. Please verify your rights
+before distributing it publicly.
