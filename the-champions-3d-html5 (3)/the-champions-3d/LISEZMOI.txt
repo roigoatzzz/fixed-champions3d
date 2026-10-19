@@ -1,0 +1,53 @@
+THE CHAMPIONS 3D - version HTML5 (Ruffle)
+=========================================
+
+Version jouable dans un navigateur du jeu Flash "The Champions 3D",
+adaptee pour fonctionner avec l'emulateur Ruffle. Aucun plugin Flash requis.
+
+LANCER LE JEU EN LOCAL
+----------------------
+Le jeu ne marche pas en double-cliquant sur index.html (securite du
+navigateur). Il faut un petit serveur local. Il faut Python installe
+(python.org ; sous Windows, coche "Add Python to PATH" a l'installation).
+
+  Windows      : double-clique sur start.bat
+  Mac / Linux  : lance start.sh   (ou: sh start.sh dans un terminal)
+
+Le navigateur s'ouvre sur http://localhost:8000
+Laisse la fenetre noire ouverte pendant que tu joues. Ferme-la pour arreter.
+
+A la main (si les scripts ne marchent pas) :
+  1. Ouvre un terminal dans ce dossier
+     (Windows : tape "cmd" dans la barre d'adresse de l'Explorateur)
+  2. Tape :  python -m http.server 8000
+     (ou py -m http.server 8000 / python3 -m http.server 8000)
+  3. Va sur http://localhost:8000
+
+SANS PYTHON
+-----------
+Installe Ruffle Desktop (https://ruffle.rs) et ouvre thechampions3d.swf.
+
+CONSEILS DE FLUIDITE
+--------------------
+Le terrain 3D est reconstitue en 2D, ce qui est gourmand.
+- Boutons sous le jeu : Taille "Petit" = le plus rapide.
+- Qualite "Rapide" (defaut) = plus fluide ; "Nette" = plus joli mais plus lent.
+- Utilise un navigateur recent (Chrome, Edge, Firefox) avec
+  l'acceleration materielle activee.
+- Si les touches ne repondent plus, clique une fois dans le jeu.
+- Le son demarre apres un premier clic dans la page.
+
+MISE EN LIGNE
+-------------
+Ce dossier est un site statique : envoie-le tel quel sur Netlify,
+GitHub Pages, Cloudflare Pages, etc. (index.html a la racine).
+
+CONTENU
+-------
+index.html          page qui charge le jeu
+thechampions3d.swf  le jeu (patche pour Ruffle)
+ruffle/             l'emulateur Ruffle (licences MIT/Apache-2.0 incluses)
+start.bat / start.sh  lanceurs
+
+Le jeu appartient a ses auteurs d'origine. Verifie tes droits avant
+de le diffuser publiquement.
