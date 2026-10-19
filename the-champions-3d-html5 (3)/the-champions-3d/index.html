@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>The Champions 3D</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+html,body{margin:0;height:100%;background:#111;color:#ccc;font:14px sans-serif}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+#game{width:600px;height:450px}
+#bar button{background:#333;color:#eee;border:1px solid #555;padding:6px 12px;margin:0 3px;cursor:pointer}
+#bar button.on{background:#2a7;border-color:#2a7}
+</style></head>
+<body>
+<div id="game"></div>
+<div id="bar">Taille : <button tabindex="-1" data-s="1">Petit (rapide)</button><button tabindex="-1" data-s="1.33">Moyen</button><button tabindex="-1" data-s="1.67">Grand</button>
+<button tabindex="-1" onclick="location.search='?q='+(new URLSearchParams(location.search).get('q')==='high'?'low':'high')">Qualité : <span id="ql"></span></button>
+<small>— saccadé ? Petit + Rapide</small></div>
+<script src="ruffle/ruffle.js"></script>
+<script>
+window.addEventListener("load",()=>{
+  const g=document.getElementById("game");
+  const Q=new URLSearchParams(location.search).get("q")==="high"?"high":"low";
+  const p=window.RufflePlayer.newest().createPlayer();
+  p.style.width="100%";p.style.height="100%";
+  g.appendChild(p);
+  p.load({url:"thechampions3d.swf",autoplay:"on",unmuteOverlay:"visible",letterbox:"on",contextMenu:"off",quality:Q});
+  function size(s){g.style.width=(600*s)+"px";g.style.height=(450*s)+"px";
+    document.querySelectorAll("#bar button").forEach(b=>b.classList.toggle("on",b.dataset.s==s));
+    try{localStorage.setItem("tc3d",s)}catch(e){}}
+  document.querySelectorAll("#bar button").forEach(b=>b.onclick=()=>size(+b.dataset.s));
+  let s=1;try{s=+localStorage.getItem("tc3d")||1}catch(e){}
+  document.querySelectorAll("#bar button").forEach(b=>b.addEventListener("mousedown",e=>e.preventDefault()));
+  const refocus=()=>{try{document.activeElement&&document.activeElement.blur();p.focus();p.dispatchEvent(new Event("focus"))}catch(e){}};
+  document.querySelectorAll("#bar button").forEach(b=>b.addEventListener("click",()=>{setTimeout(refocus,50);setTimeout(refocus,300)}));
+  window.addEventListener("keydown",()=>{if(document.activeElement!==p)try{p.focus()}catch(e){}},true);
+  size(s);document.getElementById("ql").textContent=Q==="high"?"Nette":"Rapide";
+});
+</script></body></html>
